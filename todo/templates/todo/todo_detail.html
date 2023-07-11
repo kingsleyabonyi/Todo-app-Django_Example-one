@@ -1,0 +1,27 @@
+{% extends 'todo/base.html' %}
+
+{% block content%}
+
+<h1>Todo</h1>
+
+<strong>Status</strong>{{todo.is_done}}
+
+<p>{{todo.description}}</p>
+
+{% if not todo.is_done %}
+
+<hr>
+<form action="" method="post">
+{% csrf_token %}
+
+<button>Mark as done</button>
+
+</form>
+
+{% endif %}
+<hr>
+
+<a href="{% url 'todo_list'%}">Back to List</a><br>
+<a href="{% url 'todo_list'%}">Delete</a>
+
+{% endblock%}
