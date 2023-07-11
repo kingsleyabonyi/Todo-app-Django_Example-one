@@ -1,0 +1,34 @@
+{% extends 'task/base.html' %}
+
+{% block title %}
+Task - Todoapp
+{% endblock title %}
+
+
+{% block content %}
+
+<h1>Task to Do</h1>
+<form action="{% url 'index' %}" method="post">
+{% csrf_token %}
+
+{{task_form}}
+<button type="submit">Submit</button>
+</form>
+<ul>
+    {% for task in task_form %}
+    <li>{{task.title }} 
+        {% if task.completed == True %}
+             <strike>{{task.title}}</strike>
+        {% else%}
+            {{task.title}}
+        {% endif %}
+        
+        
+        | <a href="{% url 'update_task' %}">Update</a>
+        | <a href="{% url 'delete_task' %}">Delete</a></li>
+    </li>
+</ul>
+{% endfor %}
+
+{% endblock %}
+
